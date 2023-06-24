@@ -20,12 +20,10 @@ const Main = () => {
 
       <div className={styles.content}>
         <h2>Table 1</h2>
-        <Link to="/table1">View Table 1</Link><br></br>
-        <Link to="/table1/add">Add Record</Link>
+        <Link to="/table1">View Table 1</Link>
 
         <h2>Table 2</h2>
-        <Link to="/table2">View Table 2</Link><br></br>
-        <Link to="/table2/add">Add Record</Link>
+        <Link to="/table2">View Table 2</Link>
 
         <h2>Add Hobby</h2>
         <Link to="/form">Add Hobby</Link>

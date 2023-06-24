@@ -3,14 +3,15 @@ import axios from "axios";
 import styles from "./styles.module.css"
 
 const Form = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
   const [formData, setFormData] = useState({
     date: "",
     hobby: "",
   });
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.reload();
-  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();

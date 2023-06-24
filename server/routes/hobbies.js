@@ -13,7 +13,6 @@ router.post("/", async (req, res) => {
         return res.status(401).send({ message: "Invalid token" });
     }
     const userId = decodedToken.id; // Pobierz identyfikator użytkownika z dekodowanego tokenu
-    
      
     const user = await User.findById(userId);
     if (!user) {
