@@ -49,10 +49,42 @@
   .table a {
     margin-right: 5px;
     text-decoration: none;
-    color: #3bb19b;
+    color: #160b7a;
   }
   
   .table a:hover {
     text-decoration: underline;
   }
+  
+  .details_btn {
+    background-color: #3498db;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .edit_btn {
+    background-color: #f1c40f;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .delete_btn {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .disabled_btn {
+    color: #999;
+  }
+  
   

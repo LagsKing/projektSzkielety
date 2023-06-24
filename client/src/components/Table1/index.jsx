@@ -55,11 +55,15 @@ const Table1 = () => {
                     <td>{user.firstName}</td>
                     <td>{user.lastName}</td>
                     <td>
-                      <Link to={`/table1/details/${user._id}`}>Details</Link>
+                      <Link to={`/table1/details/${user._id}`} className={styles.details_btn}>Details</Link>
                       {user._id === loggedInUserId ? ( // Sprawdź, czy ID użytkownika w wierszu jest równe zalogowanemu ID
-                            <Link to={`/table1/edit/${user._id}`}>Edit</Link>
+                            <><Link to={`/table1/edit/${user._id}`} className={styles.edit_btn}>Edit</Link>
+                            <span className={styles.disabled_btn}>Nie możesz usunąć tego użytkownika</span></>
                         ) : (
-                      <span>Brak uprawnień do edycji</span>
+                        <>
+                        <span className={styles.disabled_btn}>Brak uprawnień do edycji</span>
+                        <Link to={`/table1/delete/${user._id}`}  className={styles.delete_btn}>Delete</Link>
+                        </>    
                     )}
                     </td>
                   </tr>
