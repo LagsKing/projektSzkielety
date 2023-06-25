@@ -4,6 +4,7 @@ import Signup from "./components/Signup"
 import Login from "./components/Login"
 import Form from "./components/Form"
 import Table1 from "./components/Table1"
+import UserDetails from "./components/UserDetails"
 function App() {
 const user = localStorage.getItem("token")
 return (
@@ -13,7 +14,8 @@ return (
 <Route path="/login" exact element={<Login />} />
 <Route path="/" element={<Navigate replace to="/login" />} />
 <Route path="/form" exact element={<Form/>}/>
-<Route path="/table1" exact element={<Table1/>}/>
+<Route path="/table1/*" exact element={<Table1/>}/>
+<Route path="/table1/:userId" element={<UserDetails />} />
 </Routes>
 )
 }

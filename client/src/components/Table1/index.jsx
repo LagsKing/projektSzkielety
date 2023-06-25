@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import axios from "axios";
+import UserDetails from "../UserDetails";
 
 const Table1 = () => {
 
@@ -11,6 +12,7 @@ const Table1 = () => {
     };
 
     const [users, setUsers] = useState([]);
+    const [selectedUserId, setSelectedUserId] = useState(null);
     const loggedInUserId = localStorage.getItem("userId");
     const token = localStorage.getItem("token"); // Pobierz token z localStorage
     
@@ -30,6 +32,11 @@ const Table1 = () => {
         fetchUsers();
     }, [token]);
 
+    useEffect(() => {
+        if (selectedUserId !== null) {
+          console.log("Selected User ID:", selectedUserId);
+        }
+      }, [selectedUserId]);
 
     return (
         <div className={styles.main_container}>
@@ -55,7 +62,7 @@ const Table1 = () => {
                     <td>{user.firstName}</td>
                     <td>{user.lastName}</td>
                     <td>
-                      <Link to={`/table1/details/${user._id}`} className={styles.details_btn}>Details</Link>
+                      <Link to={`/table1/${user._id}`} className={styles.details_btn} >Details</Link>
                       {user._id === loggedInUserId ? ( // Sprawdź, czy ID użytkownika w wierszu jest równe zalogowanemu ID
                             <><Link to={`/table1/edit/${user._id}`} className={styles.edit_btn}>Edit</Link>
                             <span className={styles.disabled_btn}>Nie możesz usunąć tego użytkownika</span></>
@@ -71,6 +78,9 @@ const Table1 = () => {
               </tbody>
             </table>
           </div>
+          <Routes>
+          <Route path="/table1/:userId" component={UserDetails} />
+          </Routes>
         </div>
       );
       
