@@ -11,10 +11,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:userId", async (req, res) => {
+router.get("/details/:userId", async (req, res) => {
     try {
       const userId = req.params.userId;
-      console.log(userId);
+    
       const user = await User.findById(userId);
       
   
@@ -28,5 +28,18 @@ router.get("/:userId", async (req, res) => {
       res.status(500).send({ message: "Internal Server Error" });
     }
   });
+
+  
+router.delete("/delete/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    await User.findByIdAndDelete(userId);
+    res.sendStatus(204);
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+
+
 
 module.exports = router;

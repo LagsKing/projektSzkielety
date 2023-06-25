@@ -15,7 +15,7 @@ return (
 <Route path="/" element={<Navigate replace to="/login" />} />
 <Route path="/form" exact element={<Form/>}/>
 <Route path="/table1/*" exact element={<Table1/>}/>
-<Route path="/table1/:userId" element={<UserDetails />} />
+<Route path="/table1/details/:userId" element={<UserDetails />} />
 </Routes>
 )
 }

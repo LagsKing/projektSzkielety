@@ -12,7 +12,6 @@ const Table1 = () => {
     };
 
     const [users, setUsers] = useState([]);
-    const [selectedUserId, setSelectedUserId] = useState(null);
     const loggedInUserId = localStorage.getItem("userId");
     const token = localStorage.getItem("token"); // Pobierz token z localStorage
     
@@ -32,11 +31,21 @@ const Table1 = () => {
         fetchUsers();
     }, [token]);
 
-    useEffect(() => {
-        if (selectedUserId !== null) {
-          console.log("Selected User ID:", selectedUserId);
+
+      const handleDeleteUser = async (userId) => {
+        try {
+          const url = `http://localhost:8080/api/table1/delete/${userId}`;
+          const headers = {
+            Authorization: `Bearer ${token}`,
+          };
+          await axios.delete(url, { headers });
+          // Odśwież listę użytkowników po usunięciu
+          const updatedUsers = users.filter((user) => user._id !== userId);
+          setUsers(updatedUsers);
+        } catch (error) {
+          console.error("Błąd podczas usuwania użytkownika", error);
         }
-      }, [selectedUserId]);
+      };
 
     return (
         <div className={styles.main_container}>
@@ -62,14 +71,15 @@ const Table1 = () => {
                     <td>{user.firstName}</td>
                     <td>{user.lastName}</td>
                     <td>
-                      <Link to={`/table1/${user._id}`} className={styles.details_btn} >Details</Link>
+                      <Link to={`/table1/details/${user._id}`} className={styles.details_btn} >Details</Link>
                       {user._id === loggedInUserId ? ( // Sprawdź, czy ID użytkownika w wierszu jest równe zalogowanemu ID
                             <><Link to={`/table1/edit/${user._id}`} className={styles.edit_btn}>Edit</Link>
                             <span className={styles.disabled_btn}>Nie możesz usunąć tego użytkownika</span></>
                         ) : (
                         <>
                         <span className={styles.disabled_btn}>Brak uprawnień do edycji</span>
-                        <Link to={`/table1/delete/${user._id}`}  className={styles.delete_btn}>Delete</Link>
+                        <Link to={`/table1/delete/${user._id}`}  className={styles.delete_btn}
+                        onClick={() => handleDeleteUser(user._id)}>Delete</Link>
                         </>    
                     )}
                     </td>

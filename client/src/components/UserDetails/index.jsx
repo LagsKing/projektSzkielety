@@ -13,7 +13,7 @@ const UserDetails = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const url = `http://localhost:8080/api/table1/${userId}`;
+        const url = `http://localhost:8080/api/table1/details/${userId}`;
         const response = await axios.get(url);
         setUser(response.data);
       } catch (error) {
