@@ -87,4 +87,12 @@
     color: #999;
   }
   
+  .add_btn {
+    background-color: #34db42;
+    color: #fff;
+    padding: 20px 30px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: bold;
+  }
   

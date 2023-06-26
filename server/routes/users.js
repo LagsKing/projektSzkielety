@@ -1,6 +1,16 @@
 const router = require("express").Router()
 const { User, validate } = require("../models/user")
 const bcrypt = require("bcrypt")
+
+router.get("/", async (req, res) => {
+    try {
+      const users = await User.find();
+      res.send(users);
+    } catch (error) {
+      res.status(500).send({ message: "Internal Server Error" });
+    }
+  });
+
 router.post("/", async (req, res) => {
 try {
     const { error } = validate(req.body)

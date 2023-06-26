@@ -60,6 +60,11 @@ const Table1 = () => {
           </nav>
       
           <div className={styles.content}>
+          <br/>
+          <Link to="/signup" className={styles.add_btn}>
+          Register as a new user
+          </Link>
+          <br/><br/>
             <table className={styles.table}>
               <thead>
                 <tr>
