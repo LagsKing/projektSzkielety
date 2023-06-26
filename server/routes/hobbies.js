@@ -30,19 +30,11 @@ router.get("/", async (req, res) => {
 router.get("/details/:hobbyId", async (req, res) => {
   try {
     const hobbyId = req.params.hobbyId;
-    const token = req.headers.authorization;
-    const cleanedToken = token.replace("Bearer ", "");
-    const decodedToken = jwt.verify(cleanedToken, process.env.JWTPRIVATEKEY);
-    if (!decodedToken) {
-      return res.status(401).send({ message: "Invalid token" });
-    }
-    const userId = decodedToken.id;
-    const user = await User.findById(userId).select("hobbies");
-    const hobby = user.hobbies.id(hobbyId);
-
-    if (!hobby) {
+    const user = await User.findOne({ "hobbies._id": hobbyId });
+    if (!user) {
       return res.status(404).send({ message: "Hobby not found" });
     }
+    const hobby = user.hobbies.id(hobbyId);
     res.json(hobby);
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
@@ -117,7 +109,7 @@ router.post("/", async (req, res) => {
     }
     const userId = decodedToken.id;
 
-    const user = await User.findById(userId).select("hobbies");
+    const user = await User.findById(req.body.userId).select("hobbies"); // Znajdź użytkownika na podstawie przesłanego userId
     if (!user) {
       return res.status(404).send({ message: "User not found" });
     }
@@ -134,5 +126,6 @@ router.post("/", async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 });
+
 
 module.exports = router;
