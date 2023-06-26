@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "./styles.module.css"
+import { Link } from "react-router-dom";
 
 const Form = () => {
   const handleLogout = () => {
@@ -28,6 +29,7 @@ const Form = () => {
         date: "",
         hobby: "",
       });
+      window.location.href = "/hobbies";
     } catch (error) {
       console.log("Wystąpił błąd podczas dodawania hobby:", error.message);
     }
@@ -43,7 +45,9 @@ const Form = () => {
   return (
     <div className={styles.main_container}>
       <nav className={styles.navbar}>
-        <h1>MySite</h1>
+        <h1>
+          <Link to="/" className={styles.site_link}>MySite</Link>
+        </h1>
         <button className={styles.white_btn} onClick={handleLogout}>
           Logout
         </button>

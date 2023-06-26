@@ -8,7 +8,6 @@ const Main = () => {
     window.location.reload();
   };
 
-  
   return (
     <div className={styles.main_container}>
       <nav className={styles.navbar}>
@@ -20,13 +19,20 @@ const Main = () => {
 
       <div className={styles.content}>
         <h2>Table 1</h2>
-        <Link to="/table1">View Table 1</Link>
+        <Link to="/table1" className={styles.view_table_btn}>
+          Users
+        </Link>
 
         <h2>Table 2</h2>
-        <Link to="/table2">View Table 2</Link>
+        <Link to="/hobbies" className={styles.view_table_btn}>
+          Hobbies
+        </Link>
 
-        <h2>Add Hobby</h2>
-        <Link to="/form">Add Hobby</Link>
+        <h2>List</h2>
+        <Link to="/list" className={styles.view_table_btn}>
+          List
+        </Link>
+
       </div>
     </div>
   );

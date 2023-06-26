@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const UserDetails = () => {
     const handleLogout = () => {
@@ -31,7 +31,9 @@ const UserDetails = () => {
   return (
     <div className={styles.main_container}>
           <nav className={styles.navbar}>
-            <h1>MySite</h1>
+          <h1>
+          <Link to="/" className={styles.site_link}>MySite</Link>
+          </h1>
             <button className={styles.white_btn} onClick={handleLogout}>
               Logout
             </button>

@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import { Link, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import UserDetails from "../UserDetails";
+import EditUser from "../EditUser";
 
 const Table1 = () => {
 
@@ -50,7 +51,9 @@ const Table1 = () => {
     return (
         <div className={styles.main_container}>
           <nav className={styles.navbar}>
-            <h1>MySite</h1>
+          <h1>
+          <Link to="/" className={styles.site_link}>MySite</Link>
+          </h1>
             <button className={styles.white_btn} onClick={handleLogout}>
               Logout
             </button>
@@ -89,7 +92,8 @@ const Table1 = () => {
             </table>
           </div>
           <Routes>
-          <Route path="/table1/:userId" component={UserDetails} />
+          <Route path="/table1/details/:userId" component={UserDetails} />
+          <Route path="/table1/edit/:userId" element={<EditUser />} />
           </Routes>
         </div>
       );

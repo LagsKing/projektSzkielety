@@ -40,6 +40,23 @@ router.delete("/delete/:userId", async (req, res) => {
   }
 });
 
+router.put("/edit/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const updatedUser = req.body; // Pobierz dane edytowanego użytkownika z żądania
+
+    const result = await User.findByIdAndUpdate(userId, updatedUser, { new: true });
+
+    if (!result) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    res.json(result);
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+
 
 
 module.exports = router;

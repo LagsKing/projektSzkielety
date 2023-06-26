@@ -26,18 +26,31 @@
 	margin-right: 20px;
 }
 
-.view_table_btn {
-	display: inline-block;
-	padding: 10px 20px;
-	background-color: #eaeaea;
-	color: #333;
-	text-decoration: none;
-	font-weight: bold;
+.user_details {
+	margin-top: 20px;
+	padding: 20px;
+	background-color: #f5f5f5;
 	border-radius: 5px;
-	margin-top: 10px;
   }
   
-  .view_table_btn:hover {
-	background-color: #ccc;
+  .user_details h2 {
+	font-size: 20px;
+	margin-bottom: 10px;
+  }
+  
+  .user_details div {
+	margin-bottom: 5px;
+  }
+  
+  .user_details strong {
+	font-weight: bold;
+  }
+  
+  .user_details .email {
+	color: blue;
+  }
+  
+  .user_details .hashed_password {
+	color: red;
   }
   
