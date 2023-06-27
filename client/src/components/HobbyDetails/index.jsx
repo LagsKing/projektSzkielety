@@ -17,12 +17,8 @@ const HobbyDetails = () => {
       try {
         const url = `http://localhost:8080/api/hobbies/details/${hobbyId}`;
         const token = localStorage.getItem("token");
-        const config = {
-            headers: {
-              Authorization: `Bearer ${token}`, // Dodaj swój token tutaj
-            },
-          };
-        const response = await axios.get(url,config);
+        const headers = { Authorization: `Bearer ${token}` };
+        const response = await axios.get(url, { headers });
         setHobby(response.data);
       } catch (error) {
         console.log("Błąd podczas pobierania danych hobby", error);
@@ -55,6 +51,9 @@ const HobbyDetails = () => {
         </div>
         <div>
           <strong>Hobby:</strong> {hobby.hobby}
+        </div>
+        <div>
+          <strong>User Email:</strong> {hobby.userEmail}
         </div>
       </div>
     </div>

@@ -15,6 +15,27 @@ const EditHobby = () => {
   });
   const { hobbyId } = useParams();
 
+  useEffect(() => {
+    const fetchHobby = async () => {
+      try {
+        const url = `http://localhost:8080/api/hobbies/details/${hobbyId}`;
+        const token = localStorage.getItem("token");
+        const headers = { Authorization: `Bearer ${token}` };
+        const response = await axios.get(url, { headers });
+        const hobbyData = response.data;
+
+        setFormData({
+          date: hobbyData.date,
+          hobby: hobbyData.hobby,
+        });
+      } catch (error) {
+        console.log("Błąd podczas pobierania hobby:", error);
+      }
+    };
+
+    fetchHobby();
+  }, [hobbyId]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

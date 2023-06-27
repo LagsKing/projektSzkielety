@@ -35,7 +35,10 @@ router.get("/details/:hobbyId", async (req, res) => {
       return res.status(404).send({ message: "Hobby not found" });
     }
     const hobby = user.hobbies.id(hobbyId);
-    res.json(hobby);
+    const { date, hobby: hobbyName } = hobby;
+    const { email } = await User.findById(user._id).select("email");
+
+    res.json({ date, hobby: hobbyName, userEmail: email });
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
